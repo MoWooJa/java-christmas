@@ -11,7 +11,7 @@ public class InputHandler {
         this.inputView = inputView;
     }
 
-    public Integer askVisitDay() {
+    public December askVisitDay() {
         return handle(inputView::getVisitDay);
     }
 

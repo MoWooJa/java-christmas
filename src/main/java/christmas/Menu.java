@@ -15,9 +15,9 @@ public enum Menu {
 
     ICE_CREAM(DESERT, "아이스크림", 5000),
 
-    COKE(DRINK, "초코케이크", 15000),
+    COKE(DRINK, "제로콜라", 3000),
 
-    WINE(DRINK, "아이스크림", 5000),
+    WINE(DRINK, "레드와인", 60000),
 
     CHAMPAGNE(DRINK, "샴페인", 25000),
 
@@ -28,6 +28,8 @@ public enum Menu {
     SEA_FOOD_PASTA(MAIN, "해산물파스타", 35000),
 
     CHRIST_PASTA(MAIN, "크리스마스파스타", 25000);
+
+
 
     private final MenuCategory menuCategory;
 
