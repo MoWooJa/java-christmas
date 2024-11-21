@@ -1,5 +1,6 @@
 package christmas;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class InputHandler {
@@ -12,6 +13,10 @@ public class InputHandler {
 
     public Integer askVisitDay() {
         return handle(inputView::getVisitDay);
+    }
+
+    public List<OrderRequestDto> askManuAndQuantity() {
+        return handle(inputView::getMenuAndQuantity);
     }
 
 
