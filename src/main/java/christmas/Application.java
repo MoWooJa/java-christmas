@@ -11,10 +11,26 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        Validator validator = new Validator();
         DiscountCalculate discountCalculate = new DiscountCalculate();
         String visitDate = inputView.getVisitDate();
+        try{
+            validator.parseDate(visitDate);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return;
+        }
+
         int date = Integer.parseInt(visitDate);
+
         String menu = inputView.getMenu();
+        try{
+            validator.validateMenu(menu);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return;
+        }
+
 
         outputView.printDateBenefit(date);
         EnumMap<Menu, Integer> order = Parser.parse(menu);
@@ -68,6 +84,35 @@ public class Application {
         //배지
 
 
+    }
+
+    static class Validator {
+        private static final String DELIMITER = ",";
+
+        public void parseDate(String dateStr) {
+            try {
+                int date = Integer.parseInt(dateStr);
+                validateDateRange(date);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            }
+        }
+
+        private void validateDateRange(int date) {
+            if (!(date >= 1 && date <= 31)) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            }
+        }
+
+        public void validateMenu(String menuStr) {
+            String[] orderItems = menuStr.split(",");
+            for (String orderItem : orderItems) {
+                orderItem = orderItem.trim(); // 공백 제거
+                if (!orderItem.matches("^[가-힣]+-\\d+$")) { // 가-1,나-2 형식 확인
+                    throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                }
+            }
+        }
     }
 
     static class InputView {
