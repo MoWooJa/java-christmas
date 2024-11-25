@@ -8,7 +8,7 @@ public class Date {
     public static final int FRIDAY_MOD = 1;
     public static final int WEEKDAY = 7;
     public static final int D_DAY = 25;
-    private static final Set<Integer> STAR_DAYS = Set.of(1, 2, 3);
+    private static final Set<Integer> STAR_DAYS = Set.of(3, 10, 17, 24, 31, 25);
 
     private final int date;
 
